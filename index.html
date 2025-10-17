@@ -1,1 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LanaDrey Bot Commands</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #0d0b14;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #c6a8ff;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #bdbdbd;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .commands-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .category {
+      background: #181320;
+      border: 1px solid #3c2f55;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 0 15px rgba(198, 168, 255, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .category:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(198, 168, 255, 0.25);
+    }
+
+    .category h2 {
+      color: #d6b8ff;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #3c2f55;
+      padding-bottom: 5px;
+    }
+
+    .cmd {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #ddd;
+    }
+
+    .cmd span {
+      color: #c6a8ff;
+      font-weight: 600;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    a {
+      color: #c6a8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #14101c;
+      border-bottom: 1px solid #2b2239;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .topbar h3 {
+      color: #c6a8ff;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .topbar a {
+      background: #c6a8ff;
+      color: #0d0b14;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .topbar a:hover {
+      background: #e1ceff;
+    }
+
+    body {
+      padding-top: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <h3>LanaDrey Bot</h3>
+    <a href="https://discord.com/api/oauth2/authorize?client_id=YOUR_CLIENT_ID&permissions=8&scope=bot">Invite Bot</a>
+  </div>
+
+  <h1>Command List</h1>
+  <p>View all my commands below 💜</p>
+
+  <div class="commands-container">
+    <div class="category">
+      <h2>🛠 Moderation</h2>
+      <p class="cmd"><span>.kick</span> @user [reason] — Kick a member</p>
+      <p class="cmd"><span>.ban</span> @user [reason] — Ban a member</p>
+      <p class="cmd"><span>.unban</span> name#tag — Unban a user</p>
+      <p class="cmd"><span>.clear</span> [amount] — Delete messages</p>
+    </div>
+
+    <div class="category">
+      <h2>🎭 Roles</h2>
+      <p class="cmd"><span>.addrole</span> @user @role — Add a role</p>
+      <p class="cmd"><span>.removerole</span> @user @role — Remove a role</p>
+    </div>
+
+    <div class="category">
+      <h2>⚙ Prefix</h2>
+      <p class="cmd"><span>.setprefix</span> [newprefix] — Change bot prefix</p>
+    </div>
+
+    <div class="category">
+      <h2>📜 Info</h2>
+      <p class="cmd"><span>.help</span> — Show help menu</p>
+    </div>
+  </div>
+
+  <footer>
+    Made with 💋 by <a href="#">LanaDrey</a> • Inspired by Baba Bot
+  </footer>
+</body>
+</html>
 
