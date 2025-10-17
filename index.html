@@ -1,171 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LanaDrey Bot Commands</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LanaDrey Commands</title>
   <style>
+    :root {
+      --bg: #0c0b10;
+      --card: #15131c;
+      --border: #242030;
+      --text: #f3f3f3;
+      --muted: #b3b3b3;
+      --accent: #a284ff;
+      --hover: #b9a4ff;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: "Inter", sans-serif;
     }
 
     body {
-      background-color: #0d0b14;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 20px;
+      background-color: var(--bg);
+      color: var(--text);
+      padding-top: 80px;
       min-height: 100vh;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #c6a8ff;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #bdbdbd;
-      margin-bottom: 40px;
-      text-align: center;
-    }
-
-    .commands-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      width: 100%;
-      max-width: 1000px;
-    }
-
-    .category {
-      background: #181320;
-      border: 1px solid #3c2f55;
-      border-radius: 16px;
-      padding: 25px;
-      box-shadow: 0 0 15px rgba(198, 168, 255, 0.1);
-      transition: transform 0.2s ease;
-    }
-
-    .category:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 20px rgba(198, 168, 255, 0.25);
-    }
-
-    .category h2 {
-      color: #d6b8ff;
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #3c2f55;
-      padding-bottom: 5px;
-    }
-
-    .cmd {
-      margin-top: 8px;
-      font-size: 0.95rem;
-      color: #ddd;
-    }
-
-    .cmd span {
-      color: #c6a8ff;
-      font-weight: 600;
-    }
-
-    footer {
-      margin-top: 60px;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    a {
-      color: #c6a8ff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .topbar {
+    /* --- NAVBAR --- */
+    nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background: #14101c;
-      border-bottom: 1px solid #2b2239;
-      padding: 15px 30px;
+      background: #0d0b12;
+      border-bottom: 1px solid var(--border);
+      padding: 15px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      z-index: 10;
     }
 
-    .topbar h3 {
-      color: #c6a8ff;
-      font-size: 1.2rem;
-      font-weight: 600;
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .topbar a {
-      background: #c6a8ff;
-      color: #0d0b14;
-      padding: 8px 16px;
-      border-radius: 10px;
+    .nav-left h2 {
+      color: var(--accent);
       font-weight: 600;
+      font-size: 1.3rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
       transition: 0.2s;
     }
 
-    .topbar a:hover {
-      background: #e1ceff;
+    .nav-links a:hover {
+      color: var(--accent);
     }
 
-    body {
-      padding-top: 80px;
+    .support-btn {
+      background-color: #5865f2;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .support-btn:hover {
+      background-color: #6f7bff;
+    }
+
+    /* --- PAGE CONTENT --- */
+    header {
+      text-align: center;
+      margin: 40px 0 20px;
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+
+    header p {
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* --- FILTER BAR --- */
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 20px auto 40px;
+    }
+
+    .filter {
+      background: #14121a;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      padding: 6px 16px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .filter:hover, .filter.active {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* --- COMMAND GRID --- */
+    .commands {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .command-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+
+    .command-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .command-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .command-card p {
+      color: var(--muted);
+      margin-top: 4px;
+      font-size: 0.9rem;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      transition: 0.2s;
+    }
+
+    .copy-btn:hover {
+      color: var(--accent);
+    }
+
+    .section-title {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
 
-  <div class="topbar">
-    <h3>lanadrey Bot</h3>
-    <a href="https://discord.com/oauth2/authorize?client_id=1428811273402974271&permissions=8&integration_type=0&scope=bot">Invite Bot</a>
+  <nav>
+    <div class="nav-left">
+      <img src="https://cdn-icons-png.flaticon.com/512/4202/4202830.png" alt="icon" width="32" />
+      <h2>LanaDrey</h2>
+    </div>
+    <div class="nav-links">
+      <a href="#">Commands</a>
+      <a href="#">Status</a>
+      <a href="https://discord.gg/rAYbYebU" class="support-btn">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" width="18">
+        Support
+      </a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Commands</h1>
+    <p>View all my available commands</p>
+  </header>
+
+  <div class="filters">
+    <div class="filter active">All</div>
+    <div class="filter">Moderation</div>
+    <div class="filter">Roles</div>
+    <div class="filter">Prefix</div>
+    <div class="filter">Info</div>
   </div>
 
-  <h1>Command List</h1>
-  <p>View all my commands below</p>
-
-  <div class="commands-container">
-    <div class="category">
-      <h2>🛠 Moderation</h2>
-      <p class="cmd"><span>.kick</span> @user [reason] — Kick a member</p>
-      <p class="cmd"><span>.ban</span> @user [reason] — Ban a member</p>
-      <p class="cmd"><span>.unban</span> name#tag — Unban a user</p>
-      <p class="cmd"><span>.clear</span> [amount] — Delete messages</p>
+  <div class="commands">
+    <div class="command-card">
+      <button class="copy-btn" onclick="copyCommand('.kick')">📋</button>
+      <h3>.kick</h3>
+      <p>Kicks a member from the server.</p>
+      <p><b>Args:</b> user, reason</p>
+      <p><b>Perms:</b> Kick Members</p>
     </div>
 
-    <div class="category">
-      <h2>🎭 Roles</h2>
-      <p class="cmd"><span>.addrole</span> @user @role — Add a role</p>
-      <p class="cmd"><span>.removerole</span> @user @role — Remove a role</p>
+    <div class="command-card">
+      <button class="copy-btn" onclick="copyCommand('.ban')">📋</button>
+      <h3>.ban</h3>
+      <p>Bans a member from the server.</p>
+      <p><b>Args:</b> user, reason</p>
+      <p><b>Perms:</b> Ban Members</p>
     </div>
 
-    <div class="category">
-      <h2>⚙ Prefix</h2>
-      <p class="cmd"><span>.setprefix</span> [newprefix] — Change bot prefix</p>
+    <div class="command-card">
+      <button class="copy-btn" onclick="copyCommand('.unban')">📋</button>
+      <h3>.unban</h3>
+      <p>Unbans a member by name#tag.</p>
+      <p><b>Args:</b> user</p>
+      <p><b>Perms:</b> Ban Members</p>
     </div>
 
-    <div class="category">
-      <h2>Info</h2>
-      <p class="cmd"><span>.help</span> — Show help menu</p>
+    <div class="command-card">
+      <button class="copy-btn" onclick="copyCommand('.addrole')">📋</button>
+      <h3>.addrole</h3>
+      <p>Adds a role to a member.</p>
+      <p><b>Args:</b> user, role</p>
+      <p><b>Perms:</b> Manage Roles</p>
+    </div>
+
+    <div class="command-card">
+      <button class="copy-btn" onclick="copyCommand('.setprefix')">📋</button>
+      <h3>.setprefix</h3>
+      <p>Changes the bot prefix.</p>
+      <p><b>Args:</b> prefix</p>
+      <p><b>Perms:</b> Administrator</p>
+    </div>
+
+    <div class="command-card">
+      <button class="copy-btn" onclick="copyCommand('.help')">📋</button>
+      <h3>.help</h3>
+      <p>Shows help menu with command list.</p>
+      <p><b>Args:</b> None</p>
+      <p><b>Perms:</b> None</p>
     </div>
   </div>
 
-  <footer>
-    Made with love by <a href="#">lanabbg</a>
-  </footer>
+  <script>
+    function copyCommand(cmd) {
+      navigator.clipboard.writeText(cmd);
+      alert(`Copied "${cmd}" to clipboard!`);
+    }
+  </script>
+
 </body>
 </html>
-
